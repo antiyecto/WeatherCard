@@ -1,0 +1,153 @@
+* {
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  margin: 0;
+  user-select: none;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.weathercard {
+  background-color: rgba(32, 33, 36, 255);
+  width: 1000px;
+  height: 500px;
+}
+
+.header {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__left {
+  margin-top: 30px;
+  margin-left: 5%;
+  height: 100%;
+  width: 40%;
+  display: flex;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.left__icon {
+  font-size: 60px;
+}
+
+.left__list {
+  list-style-type: none;
+  flex-grow: 1;
+  padding: 5px;
+}
+
+.left__list__item {
+  color: gray;
+}
+
+.left__icon {
+  font-size: 50px;
+}
+
+.left__title {
+  font-size: 60px;
+}
+
+.left_title--disabled {
+  font-size: 15px;
+  padding: 5px;
+}
+
+.header__right {
+  margin-top: 25px;
+  margin-right: 5%;
+  height: 100%;
+  width: 20%;
+  text-align: right;
+  padding: 10px;
+}
+
+.right__title {
+  font-size: 25px;
+}
+
+.right__time {
+  color: gray;
+}
+
+.right__status {
+  color: gray;
+}
+
+.graph {
+  height: 40%;
+}
+
+.graph__menu {
+  margin-left: 5%;
+  display: flex;
+  flex: inline;
+}
+
+.graph__menu__item {
+  padding: 6px;
+}
+
+.graph__menu__line {
+  color: gray;
+}
+
+.graph__menu__item--selected {
+  border-bottom: 2px solid yellow;
+}
+
+.day__grid {
+  margin-left: 5%;
+  width: 90%;
+  height: 25%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.day {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 13%;
+  align-items: center;
+  text-align: center;
+}
+
+.day--selected {
+  background-color: rgba(48, 49, 52, 255);
+  border-radius: 10px;
+}
+
+.day__title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.day__icon {
+  font-size: 50px;
+}
+
+.day__maxtemp {
+  font-size: 20px;
+  padding: 3px;
+}
+
+.day__mintemp {
+  font-size: 20px;
+  color: gray;
+  padding: 3px;
+}
