@@ -102,6 +102,7 @@ body {
 
 .graph__menu__line {
   color: gray;
+  padding-top: 6px;
 }
 
 .graph__menu__item--selected {
