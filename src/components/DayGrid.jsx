@@ -5,7 +5,7 @@ const daysHardCoded = [
   {
     id: 0,
     dayName: 'Thu',
-    icon: '⛅',
+    icon: '🌤️',
     max: '23°',
     min: '11°',
     selected: true,
@@ -13,7 +13,7 @@ const daysHardCoded = [
   {
     id: 1,
     dayName: 'Fri',
-    icon: '⛅',
+    icon: '🌤️',
     max: '24°',
     min: '11°',
     selected: false,
@@ -21,7 +21,7 @@ const daysHardCoded = [
   {
     id: 2,
     dayName: 'Sat',
-    icon: '⛅',
+    icon: '🌤️',
     max: '25°',
     min: '12°',
     selected: false,
@@ -30,16 +30,16 @@ const daysHardCoded = [
     id: 3,
     dayName: 'Sun',
     icon: '☀️',
-    max: '21°',
+    max: '27°',
     min: '13°',
     selected: false,
   },
   {
     id: 4,
     dayName: 'Mon',
-    icon: '⛅',
-    max: '24°',
-    min: '11°',
+    icon: '🌤️',
+    max: '21°',
+    min: '13°',
     selected: false,
   },
   {
@@ -61,7 +61,7 @@ const daysHardCoded = [
   {
     id: 7,
     dayName: 'Thu',
-    icon: '⛅',
+    icon: '🌤️',
     max: '17°',
     min: '9°',
     selected: false,

@@ -4,7 +4,7 @@ export const Header = () => {
   return (
     <div className="header">
       <div className="header__left">
-        <span className="left__icon">⛅</span>
+        <span className="left__icon">🌤️</span>
         <p className="left__title">18</p>
         <p className="left_title--disabled">°C | °F</p>
         <div className="left__list">
