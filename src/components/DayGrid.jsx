@@ -11,6 +11,7 @@
 // }
 
 import { DayItem } from './DayItem';
+import { getTemperatureIcon } from '../helpers/getTemperatureIcon';
 
 async function getWeatherData() {
   const temperatureUrl =
@@ -21,14 +22,13 @@ async function getWeatherData() {
   console.log(temperatureData);
   const dailyData = temperatureData.daily;
 
-  // Procesar los datos de temperatura y generar un array con la información necesaria para cada día
   const days = dailyData.time.map((day, index) => {
     return {
       id: index,
       dayName: new Date(day + 'T00:00:00-07:00').toLocaleDateString('en-US', {
         weekday: 'short',
       }),
-      icon: '🌤️', // Podemos agregar un icono por defecto o utilizar una librería de iconos para obtener un icono de acuerdo al clima
+      icon: getTemperatureIcon(Math.round(dailyData.temperature_2m_max[index])),
       max: `${Math.round(dailyData.temperature_2m_max[index])}°`,
       min: `${Math.round(dailyData.temperature_2m_min[index])}°`,
       selected: false,
