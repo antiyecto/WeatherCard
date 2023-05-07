@@ -1,4 +1,5 @@
 import { getWeatherData } from '../helpers/getWeatherData';
+import { getStatusByIcon } from '../helpers/getStatusByIcon';
 
 const weatherData = await getWeatherData();
 
@@ -22,7 +23,7 @@ export const Header = () => {
         <p className="right__time">
           {weatherData.dayName} {weatherData.hour}
         </p>
-        <p className="right__status">Mostly cloudy</p>
+        <p className="right__status">{getStatusByIcon(weatherData.icon)}</p>
       </div>
     </div>
   );
