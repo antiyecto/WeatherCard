@@ -1,8 +1,6 @@
-import React from 'react';
-
-export const DayItem = ({ className, dayName, icon, min, max }) => {
+export const DayItem = ({ className, dayName, icon, max, min }) => {
   return (
-    <div className={className ? className : 'day'}>
+    <div className={className}>
       <span className="day__title">{dayName}</span>
       <span className="day__icon">{icon}</span>
       <div>

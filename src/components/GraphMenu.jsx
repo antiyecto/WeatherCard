@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const GraphMenu = () => {
   return (
     <div className="graph__menu">
