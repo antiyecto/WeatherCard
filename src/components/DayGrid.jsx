@@ -1,110 +1,49 @@
-import { DayItem } from './DayItem';
-
 /* 
 1. Armar las requests => URL
-  Current Day (Temperature, Humidity, Precipitation & Wind): https://api.open-meteo.com/v1/forecast?latitude=45.52&longitude=-122.68&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,windspeed_10m&forecast_days=1&timezone=America%2FSao_Paulo
-  Forecast Temperature (7 Days): https://api.open-meteo.com/v1/forecast?latitude=45.52&longitude=-122.68&daily=temperature_2m_max,temperature_2m_min&timezone=America%2FSao_Paulo
-  Forecast Precipitation (7 Days): https://api.open-meteo.com/v1/forecast?latitude=45.52&longitude=-122.68&daily=precipitation_sum&timezone=America%2FSao_Paulo
-  Forecast Wind (7 Days): https://api.open-meteo.com/v1/forecast?latitude=45.52&longitude=-122.68&daily=windspeed_10m_max&timezone=America%2FSao_Paulo
+  Current Day (Temperature, Humidity, Precipitation & Wind): https://api.open-meteo.com/v1/forecast?latitude=45.52&longitude=-122.68&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,windspeed_10m&forecast_days=1&timezone=America%2FLos_Angeles
+  Forecast Temperature (7 Days): https://api.open-meteo.com/v1/forecast?latitude=45.52&longitude=-122.68&daily=temperature_2m_max,temperature_2m_min&timezone=America%2FLos_Angeles
+  Forecast Precipitation (7 Days): https://api.open-meteo.com/v1/forecast?latitude=45.52&longitude=-122.68&daily=precipitation_sum&timezone=America%2FLos_Angeles
+  Forecast Wind (7 Days): https://api.open-meteo.com/v1/forecast?latitude=45.52&longitude=-122.68&daily=windspeed_10m_max&timezone=America%2FLos_Angeles
 2. Hacer la función que haga las resquest => getWeatherData()
 3. Procesar los datos => Transformar la response en variables
 */
 
-const getWeatherData = async () => {
-  const url =
-    'https://api.open-meteo.com/v1/forecast?latitude=45.52&longitude=-122.68&daily=temperature_2m_max,temperature_2m_min&timezone=America%2FSao_Paulo';
-  const resp = await fetch(url);
-  const data = resp.json();
-  return data;
-  // data.daily => data.daily.temperature_2m_max = [temp ] // data.daily.temperature_2m_min
-  // data.daily => data.daily.time = [dias calendario]
-};
+// }
 
-getWeatherData().then((data) => {
-  const days = [
-    {
-      id: 0,
-      dayName: data.daily.time[0],
-      icon: '🌤️',
-      max: `${data.daily.temperature_2m_max}[0]°`,
-      min: `${data.daily.temperature_2m_min}[0]°`,
-      selected: true,
-    },
-    {},
-  ];
-});
+import { DayItem } from './DayItem';
 
-const daysHardCoded = [
-  {
-    id: 0,
-    dayName: 'Thu',
-    icon: '🌤️',
-    max: '23°',
-    min: '11°',
-    selected: true,
-  },
-  {
-    id: 1,
-    dayName: 'Fri',
-    icon: '🌤️',
-    max: '24°',
-    min: '11°',
-    selected: false,
-  },
-  {
-    id: 2,
-    dayName: 'Sat',
-    icon: '🌤️',
-    max: '25°',
-    min: '12°',
-    selected: false,
-  },
-  {
-    id: 3,
-    dayName: 'Sun',
-    icon: '☀️',
-    max: '27°',
-    min: '13°',
-    selected: false,
-  },
-  {
-    id: 4,
-    dayName: 'Mon',
-    icon: '🌤️',
-    max: '21°',
-    min: '13°',
-    selected: false,
-  },
-  {
-    id: 5,
-    dayName: 'Tue',
-    icon: '🌦️',
-    max: '23°',
-    min: '11°',
-    selected: false,
-  },
-  {
-    id: 6,
-    dayName: 'Wed',
-    icon: '🌧️',
-    max: '17°',
-    min: '7°',
-    selected: false,
-  },
-  {
-    id: 7,
-    dayName: 'Thu',
-    icon: '🌤️',
-    max: '17°',
-    min: '9°',
-    selected: false,
-  },
-];
+async function getWeatherData() {
+  const temperatureUrl =
+    'https://api.open-meteo.com/v1/forecast?latitude=45.52&longitude=-122.68&daily=temperature_2m_max,temperature_2m_min&timezone=America%2FLos_Angeles';
+
+  const temperatureResponse = await fetch(temperatureUrl);
+  const temperatureData = await temperatureResponse.json();
+  console.log(temperatureData);
+  const dailyData = temperatureData.daily;
+
+  // Procesar los datos de temperatura y generar un array con la información necesaria para cada día
+  const days = dailyData.time.map((day, index) => {
+    return {
+      id: index,
+      dayName: new Date(day + 'T00:00:00-07:00').toLocaleDateString('en-US', {
+        weekday: 'short',
+      }),
+      icon: '🌤️', // Podemos agregar un icono por defecto o utilizar una librería de iconos para obtener un icono de acuerdo al clima
+      max: `${Math.round(dailyData.temperature_2m_max[index])}°`,
+      min: `${Math.round(dailyData.temperature_2m_min[index])}°`,
+      selected: false,
+    };
+  });
+
+  return days;
+}
+
+const days = await getWeatherData();
 
 export const DayGrid = () => {
   return (
     <div className="day__grid">
-      {daysHardCoded.map((day) => (
+      {days.map((day) => (
         <DayItem
           key={day.id}
           className={day.selected ? 'day day--selected' : 'day'}
