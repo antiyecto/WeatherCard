@@ -7,11 +7,16 @@ export async function getWeatherData() {
   const temperatureResponse = await fetch(temperatureUrl);
   const data = await temperatureResponse.json();
 
-  const currentHour = new Date().toLocaleString('en-US', {
+  let currentHour = new Date().toLocaleString('en-US', {
     timeZone: 'America/Los_Angeles',
     hour: 'numeric',
     hour12: false,
   });
+
+  if (currentHour < 10) {
+    currentHour = currentHour.substring(1);
+  }
+
   const currentPrecipitation =
     data.hourly.precipitation_probability[currentHour];
 

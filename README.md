@@ -4,11 +4,15 @@ Este repositorio contiene el componente WeatherCard inspirado en el que utiliza 
 
 ![](https://i.imgur.com/QYmm8wE.png)
 
-## Tecnologías
+## Observaciones
 
-Este componente fue hecho en React y se utilizó CSS para sus estilos.
+Los emojis que muestran el estado general del clima son elegidos según la temperatura, por lo que no necesariamente reflejan el estado real del clima.
 
-## Run
+# Tecnologías
+
+Este componente fue hecho con React y se utilizó CSS para sus estilos.
+
+# Run
 
 Necesitas [Yarn](https://yarnpkg.com/) para ejecutar el proyecto.
 
