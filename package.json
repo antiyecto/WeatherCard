@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "babel src --out-dir dist --copy-files --ignore '**/*.test.js' && node ./dist/index.js",
+    "build": "babel src --out-dir dist --copy-files --ignore '**/*.test.js,**/index.js'",
     "preview": "vite preview"
   },
   "dependencies": {
